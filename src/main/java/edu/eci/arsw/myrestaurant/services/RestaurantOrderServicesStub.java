@@ -1,25 +1,28 @@
 package edu.eci.arsw.myrestaurant.services;
 
 
+import edu.eci.arsw.myrestaurant.beans.impl.BasicBillCalculator;
+import edu.eci.arsw.myrestaurant.beans.impl.BillWithTaxesCalculator;
 import edu.eci.arsw.myrestaurant.model.Order;
 import edu.eci.arsw.myrestaurant.model.RestaurantProduct;
-import edu.eci.arsw.myrestaurant.beans.BillCalculator;
 import edu.eci.arsw.myrestaurant.model.ProductType;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RestaurantOrderServicesStub implements RestaurantOrderServices {
 
-    
-    BillCalculator calc = null;
+    private BasicBillCalculator basicBillCalculator;
+    private BillWithTaxesCalculator billWithTaxesCalculator;
 
-    public RestaurantOrderServicesStub() {
-    }
-
-    public void setBillCalculator(BillCalculator calc) {
-        this.calc = calc;
+    @Autowired
+    public RestaurantOrderServicesStub(BasicBillCalculator basicBillCalculator, BillWithTaxesCalculator billWithTaxesCalculator) {
+        this.basicBillCalculator = basicBillCalculator;
+        this.billWithTaxesCalculator = billWithTaxesCalculator;
     }
 
     @Override
@@ -58,7 +61,6 @@ public class RestaurantOrderServicesStub implements RestaurantOrderServices {
         } else {
             tableOrders.put(o.getTableNumber(), o);
         }
-
     }
 
     @Override
@@ -68,7 +70,6 @@ public class RestaurantOrderServicesStub implements RestaurantOrderServices {
         } else {
             tableOrders.remove(tableNumber);
         }
-
     }
 
     @Override
@@ -76,14 +77,25 @@ public class RestaurantOrderServicesStub implements RestaurantOrderServices {
         if (!tableOrders.containsKey(tableNumber)) {
             throw new OrderServicesException("Mesa inexistente o ya liberada:" + tableNumber);
         } else {
-            return calc.calculateBill(tableOrders.get(tableNumber), productsMap);
+            return basicBillCalculator.calculateBill(tableOrders.get(tableNumber), productsMap);
         }
+    }
+
+    public int calculateTableBillWithTaxes(int tableNumber) throws OrderServicesException {
+        if (!tableOrders.containsKey(tableNumber)) {
+            throw new OrderServicesException("Mesa inexistente o ya liberada:" + tableNumber);
+        } else {
+            return billWithTaxesCalculator.calculateBill(tableOrders.get(tableNumber), productsMap);
+        }
+    }
+
+    public Map<String, RestaurantProduct> getProductsMap() {
+        return productsMap;
     }
 
     private static final Map<String, RestaurantProduct> productsMap;
 
     private static final Map<Integer, Order> tableOrders;
-    
 
     static {
         productsMap = new ConcurrentHashMap<>();
@@ -107,5 +119,4 @@ public class RestaurantOrderServicesStub implements RestaurantOrderServices {
 
         tableOrders.put(3, o2);
     }
-
 }

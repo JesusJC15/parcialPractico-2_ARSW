@@ -1,5 +1,4 @@
 package edu.eci.arsw.myrestaurant.services;
-
 public class OrderServicesException extends Exception {
 
 	public OrderServicesException(String message, Throwable cause) {
@@ -11,6 +10,5 @@ public class OrderServicesException extends Exception {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
-
 
 }

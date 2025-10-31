@@ -5,12 +5,9 @@ public class RestaurantProduct  {
 	private int price;
 
 	private String name;
-        
         private ProductType type;
 
-
         public RestaurantProduct(){
-            
         }
         
 	public RestaurantProduct(String nombre, int precio, ProductType type) {
@@ -25,26 +22,22 @@ public class RestaurantProduct  {
         public void setType(ProductType type) {
             this.type = type;
         }
-
     
         public void setPrice(int precio) {
             this.price = precio;
         }
-
     
         public void setName(String nombre) {
             this.name = nombre;
         }
-        
         
     
 	public String getName() {
 		return name;
 	}
 	
-
 	public int getPrice() {
 		return price;
 	}
-	
+
 }

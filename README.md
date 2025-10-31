@@ -5,7 +5,7 @@
 
 ## Parcial segundo corte para el cálculo de cuentas de restaurantes.
 
-## Jesús Alberto Jauregui Conde
+### Jesús Alberto Jauregui Conde
 
 ### Descripción
 
@@ -14,7 +14,6 @@ En este proyecto se va a construír un API REST que permita calcular el valor to
 Este API será soportado por el siguiente modelo de clases, el cual considera el principio de inversión de dependencias, y asume el uso de Inyección de dependencias:
 
 ![](img/ClassDiagram.png)
-
 
 El anterior modelo considera, por ahora, los siguientes casos (la aplicación podrá configurarse de acuerdo con el restaurante donde sea usado):
 
@@ -50,12 +49,21 @@ Por defecto, el manejador de órdenes tiene dos órdenes registradas para las me
 
 1. Configure su aplicación para que ofrezca el recurso "/orders", para esto:
    * Modifique la clase OrdersAPIController para que exponda el servicio REST necesario por medio de SpringMVC/SpringBoot.
+   ![](img/parcial/1.png)
+   ![](img/parcial/2.png)
+
 2. Configure su aplicación para que al realizar una petición GET, retorne -en formato jSON- el conjunto de todas las órdenes y sus totales, es decir, tiene que retornar el listado de todos los productos por Orden y un campo en donde aparezca el valor total de la cuenta.
 	
-	* Importante, para el calculo del total de cada orden debe utilizar la clase "edu.eci.arsw.myrestaurant.beans.impl.BasicBillCalculator" 
+	* Importante, para el calculo del total de cada orden debe utilizar la clase "edu.eci.arsw.myrestaurant.beans.impl.BasicBillCalculator"
+	![](img/parcial/3.png)
+	![](img/parcial/4.png)
 
 
 ### Bono
 
 Haga que a la aplicación se le inyecte el bean BasicBillCalculator y BillWithTaxesCalculator. Para esto utilice el principio de los Beans revisados en laboratorios anteriores y realice la inyección de dependencias entre éstos mediante las anotaciones @Autowired y @Service.
 * Nota:  Tiene que hacer que la clase "BillWithTaxesCalculator" utilice a "edu.eci.arsw.myrestaurant.beans.impl.colombia.StandardTaxesCalculator" para realizar su calculo, no es necesario que se inyecte.
+
+![](img/parcial/5.png)
+![](img/parcial/6.png)
+![](img/parcial/7.png)
