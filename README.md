@@ -22,9 +22,7 @@ El anterior modelo considera, por ahora, los siguientes casos (la aplicación po
 	* 16% estándar sobre todos los productos (CalcularodCuentaConIVA + VerificadorIVAEstandar).
 	* Con la reforma tributaria de 2016, aplicando un IVA diferencial al tipo de producto: 16% para las bebidas y 19% para los platos.
 
-
 Por defecto, el manejador de órdenes tiene dos órdenes registradas para las mesas #1 y #3:
-
 
 * Orden Mesa 1:
 
@@ -34,7 +32,6 @@ Por defecto, el manejador de órdenes tiene dos órdenes registradas para las me
 	|HOTDOG|1|$3000|
 	|COKE|4|$1300|
 
-
 * Orden Mesa 3:
 
 	| Producto      | Cantidad | Precio  Unitario         | 
@@ -42,20 +39,21 @@ Por defecto, el manejador de órdenes tiene dos órdenes registradas para las me
 	|HAMBURGER|2|$12300|
 	|COKE|2|$1300|
 
-
-
-
 ### Ejercicio
 
 1. Configure su aplicación para que ofrezca el recurso "/orders", para esto:
    * Modifique la clase OrdersAPIController para que exponda el servicio REST necesario por medio de SpringMVC/SpringBoot.
+
    ![](img/parcial/1.png)
+
    ![](img/parcial/2.png)
 
 2. Configure su aplicación para que al realizar una petición GET, retorne -en formato jSON- el conjunto de todas las órdenes y sus totales, es decir, tiene que retornar el listado de todos los productos por Orden y un campo en donde aparezca el valor total de la cuenta.
 	
 	* Importante, para el calculo del total de cada orden debe utilizar la clase "edu.eci.arsw.myrestaurant.beans.impl.BasicBillCalculator"
+
 	![](img/parcial/3.png)
+
 	![](img/parcial/4.png)
 
 
@@ -65,5 +63,7 @@ Haga que a la aplicación se le inyecte el bean BasicBillCalculator y BillWithTa
 * Nota:  Tiene que hacer que la clase "BillWithTaxesCalculator" utilice a "edu.eci.arsw.myrestaurant.beans.impl.colombia.StandardTaxesCalculator" para realizar su calculo, no es necesario que se inyecte.
 
 ![](img/parcial/5.png)
+
 ![](img/parcial/6.png)
+
 ![](img/parcial/7.png)
