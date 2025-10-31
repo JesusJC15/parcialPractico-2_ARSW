@@ -67,3 +67,5 @@ Haga que a la aplicación se le inyecte el bean BasicBillCalculator y BillWithTa
 ![](img/parcial/6.png)
 
 ![](img/parcial/7.png)
+
+![](img/parcial/8.png)
